@@ -27,7 +27,7 @@ const ensureAuthentication = async (
     const { sub: user_id } = decoded;
     const user = await userRepository.findById(user_id);
     if (!user) {
-      throw new AppError("Invalid Tokken");
+      throw new Error("Invalid Tokken");
     }
 
     request.user = {
@@ -36,7 +36,7 @@ const ensureAuthentication = async (
 
     next();
   } catch (err) {
-    throw new AppError("Invalid Tokken");
+    throw new Error("Invalid Tokken");
   }
 };
 
